@@ -1,4 +1,5 @@
 ﻿using DedicatedServer.Chat;
+using DedicatedServer.Config;
 using StardewModdingAPI;
 using StardewValley;
 using System;
@@ -31,9 +32,12 @@ namespace DedicatedServer.HostAutomatorStages
         private IMonitor monitor;
         private FestivalChatBox festivalChatBox;
 
-        public BehaviorState(IMonitor monitor, EventDrivenChatBox chatBox)
+        private ModConfig config;
+
+        public BehaviorState(IMonitor monitor, ModConfig config, EventDrivenChatBox chatBox)
         {
             this.monitor = monitor;
+            this.config = config;
             festivalChatBox = new FestivalChatBox(chatBox, otherPlayers);
         }
 
@@ -199,7 +203,7 @@ namespace DedicatedServer.HostAutomatorStages
             if (festivalChatBox.IsEnabled())
             {
                 int numFestivalStartVotes = festivalChatBox.NumVoted();
-                int targetRequired = Config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
+                int targetRequired = config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
                 if (numFestivalStartVotes != this.numFestivalStartVotes || otherPlayers.Count != numFestivalStartVotesRequired)
                 {
                     this.numFestivalStartVotes = numFestivalStartVotes;
@@ -214,7 +218,7 @@ namespace DedicatedServer.HostAutomatorStages
         {
             festivalChatBox.Enable();
             numFestivalStartVotes = 0;
-            numFestivalStartVotesRequired = Config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
+            numFestivalStartVotesRequired = config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
         }
         public void DisableFestivalChatBox()
         {
@@ -266,7 +270,7 @@ namespace DedicatedServer.HostAutomatorStages
             betweenTransitionFestivalEndWaitTicks = 0;
             waitTicks = startOfDayWaitTicks;
             numFestivalStartVotes = 0;
-            numFestivalStartVotesRequired = Config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
+            numFestivalStartVotesRequired = config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
         }
     }
 }

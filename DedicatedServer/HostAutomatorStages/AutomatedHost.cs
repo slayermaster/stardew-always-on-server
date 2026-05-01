@@ -18,7 +18,7 @@ namespace DedicatedServer.HostAutomatorStages
         public AutomatedHost(IModHelper helper, IMonitor monitor, ModConfig config, EventDrivenChatBox chatBox)
         {
             behaviorChain = new BehaviorChain(helper, monitor, config, chatBox);
-            behaviorState = new BehaviorState(monitor, chatBox);
+            behaviorState = new BehaviorState(monitor, config, chatBox);
             this.helper = helper;
         }
 
