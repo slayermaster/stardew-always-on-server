@@ -99,6 +99,14 @@ namespace DedicatedServer.Config
         /// <inheritdoc cref = "PasswordProtectedCommands"/>
         /// </summary>
         public PasswordProtectedCommands PasswordProtected { get; set; } = new PasswordProtectedCommands();
+
+        /// <summary>
+        ///         Setting whether only one vote needed to start festival
+        /// <br/>   
+        /// <br/>   true : Only one vote will start festival
+        /// <br/>   false: Everyone must vote to start festival
+        /// </summary>
+        public bool OnlyOneVoteNeeded { get; set; } = false;
     }
 
     /// <summary>

@@ -199,10 +199,11 @@ namespace DedicatedServer.HostAutomatorStages
             if (festivalChatBox.IsEnabled())
             {
                 int numFestivalStartVotes = festivalChatBox.NumVoted();
+                int targetRequired = Config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
                 if (numFestivalStartVotes != this.numFestivalStartVotes || otherPlayers.Count != numFestivalStartVotesRequired)
                 {
                     this.numFestivalStartVotes = numFestivalStartVotes;
-                    numFestivalStartVotesRequired = otherPlayers.Count;
+                    numFestivalStartVotesRequired = targetRequired;
                     return Tuple.Create(numFestivalStartVotes, numFestivalStartVotesRequired);
                 }
             }
@@ -213,7 +214,7 @@ namespace DedicatedServer.HostAutomatorStages
         {
             festivalChatBox.Enable();
             numFestivalStartVotes = 0;
-            numFestivalStartVotesRequired = otherPlayers.Count;
+            numFestivalStartVotesRequired = Config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
         }
         public void DisableFestivalChatBox()
         {
@@ -265,7 +266,7 @@ namespace DedicatedServer.HostAutomatorStages
             betweenTransitionFestivalEndWaitTicks = 0;
             waitTicks = startOfDayWaitTicks;
             numFestivalStartVotes = 0;
-            numFestivalStartVotesRequired = otherPlayers.Count;
+            numFestivalStartVotesRequired = Config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
         }
     }
 }
