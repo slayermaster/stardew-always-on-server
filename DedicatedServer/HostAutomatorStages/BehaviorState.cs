@@ -204,7 +204,7 @@ namespace DedicatedServer.HostAutomatorStages
             {
                 int numFestivalStartVotes = festivalChatBox.NumVoted();
                 int targetRequired = config.OnlyOneVoteNeeded ? 1 : otherPlayers.Count;
-                if (numFestivalStartVotes != this.numFestivalStartVotes || otherPlayers.Count != numFestivalStartVotesRequired)
+                if (numFestivalStartVotes != this.numFestivalStartVotes || targetRequired.Count != numFestivalStartVotesRequired)
                 {
                     this.numFestivalStartVotes = numFestivalStartVotes;
                     numFestivalStartVotesRequired = targetRequired;
